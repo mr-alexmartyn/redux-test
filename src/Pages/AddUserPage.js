@@ -1,6 +1,12 @@
 import { nanoid } from '@reduxjs/toolkit';
+import { addUsers } from 'Redux/users/usersSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Form, Label, Input, Button } from 'Pages/AddUserPage.styled';
 
 export const AddUserPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -9,18 +15,20 @@ export const AddUserPage = () => {
       name: e.target.elements.name.value,
       age: e.target.elements.age.value,
     };
+    dispatch(addUsers(newUser));
+    navigate('/');
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <Form onSubmit={handleSubmit}>
+      <Label>
         Name:
-        <input type="text" name="name" />
-      </label>
-      <label>
+        <Input type="text" name="name" />
+      </Label>
+      <Label>
         Age:
-        <input type="number" name="age" />
-      </label>
-      <button type="submit">Save</button>
-    </form>
+        <Input type="number" name="age" />
+      </Label>
+      <Button type="submit">Save</Button>
+    </Form>
   );
 };
