@@ -5,7 +5,7 @@ import { AddUserPage } from 'Pages/AddUserPage';
 
 export const App = () => {
   return (
-    <Routes>
+    <Routes basename="/redux-test">
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="add" element={<AddUserPage />} />
